@@ -13,10 +13,10 @@ let state = 0;
 
 function setup() {
   noiseDetail(2, 0.6);
-  createCanvas(400, 400);
+  canvas = createCanvas(windowWidth, windowHeight);
   feed();
   howMuchFood();
-  c = new Creature (200, 200);
+  c = new Creature (windowWidth/2, windowHeight/2);
   nB.push(c);
 }
 
@@ -76,16 +76,10 @@ function face(){
   noStroke();
   blendMode(DODGE);
   fill(234,3,23);
-  circle (180, 190,10);
-  circle (220, 190, 10);
+  circle (width/2+30, height/2,20);
+  circle (width/2-30, height/2, 20);
+  line(width/2+30, height/2-40, width/2+30, height/2-200);
   
-  push()//legs
-  stroke(255)
-  line(180,230, 180,250);
-  line(180, 250, 160,250);
-  line(220, 230, 220, 250);
-  line(220, 250,240, 250)
-  pop();
   pop();
 }
 
@@ -93,8 +87,8 @@ class Creature {
   constructor(x, y) {
     this.pos = createVector(x,y);
     this.a = 0;
-    this.xoff = 200;
-    this.yoff = 200;
+    this.xoff = width/2;
+    this.yoff = height/2;
     this.r = 0;
     this.vel = createVector(2,2);
 
@@ -103,7 +97,7 @@ class Creature {
   show() {
     push();
     noFill()
-    translate(width/3, height/3)
+    translate(width/2-50, height/2-50);
     beginShape();
     for (this.a = 0; this.a < TWO_PI; this.a += 0.08) {
       this.pos.x = this.r * cos(this.a);
